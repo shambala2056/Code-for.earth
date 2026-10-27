@@ -423,7 +423,7 @@ section[id],.view{scroll-margin-top:72px}
 /* contact: a hopping Sooton, a little Sooton walking on the card, ringing phones */
 .contact-fig .bubble{left:-12%;top:12%;right:auto}
 .contact-fig img.char{height:clamp(300px,32vw,460px)}
-.contact-fig .badge{left:-16%;right:auto;top:auto;bottom:6%}
+.contact-fig .badge{left:-46%;right:auto;top:auto;bottom:8%}
 .chat-log{height:260px}
 .contact-fig .ground{position:absolute;left:50%;bottom:2%;width:42%;height:26px;margin-left:-21%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,11,11,.22),transparent);z-index:-1}
 .floaty{position:absolute;left:30%;top:38%;width:40%;height:40%;pointer-events:none}
@@ -478,19 +478,31 @@ section[id],.view{scroll-margin-top:72px}
 html.phone .site-head .wrap{zoom:var(--z);max-width:none;position:relative;padding-block:10px;gap:10px}
 html.phone .counter{display:none}
 html.phone .menu-btn{display:inline-flex}
-html.phone .nav{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;align-items:stretch;gap:4px;padding:10px 16px 18px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 30px 60px rgba(11,11,11,.12);max-height:calc(100vh / var(--z) - 70px);overflow-y:auto}
-html.phone .nav.open{display:flex}
+html.phone .nav{width:300px;padding-top:84px}
+
 html.phone .nav a{font-size:16px;padding:14px 18px;letter-spacing:.04em;text-transform:uppercase}
 html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
 @media (min-width:901px) and (max-width:1120px){.pc{width:184px;min-height:240px}}
+.nav-scrim{position:fixed;inset:0;z-index:8;background:rgba(11,11,11,.35);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
+.nav-scrim.show{opacity:1;visibility:visible;transition:opacity .35s}
+@keyframes navIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
+@media (max-width:1099px) and (prefers-reduced-motion:no-preference){
+  .nav.open a{animation:navIn .5s cubic-bezier(.2,.8,.2,1) both}
+  .nav.open a:nth-child(2){animation-delay:.05s}.nav.open a:nth-child(3){animation-delay:.1s}.nav.open a:nth-child(4){animation-delay:.15s}
+  .nav.open a:nth-child(5){animation-delay:.2s}.nav.open a:nth-child(6){animation-delay:.25s}.nav.open a:nth-child(7){animation-delay:.3s}
+}
+@media (prefers-reduced-motion:reduce){.nav,.nav.open,.nav-scrim{transition:none!important}}
 /* phone layout */
 @media (max-width:1560px){.counter{display:none}}
 @media (max-width:1099px){
   .site-head .wrap{position:relative;padding-block:10px}
   .menu-btn{display:inline-flex}
-  .nav{display:none;position:absolute;left:0;right:0;top:100%;margin:0;flex-direction:column;align-items:stretch;gap:4px;padding:10px max(16px,env(safe-area-inset-left,0px)) 18px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 30px 60px rgba(11,11,11,.12);max-height:calc(100vh - 70px);overflow-y:auto}
-  .nav.open{display:flex}
-  .nav a{font-size:16px;padding:14px 18px}
+  /* menu slides in from the right as a side panel */
+  .site-head{-webkit-backdrop-filter:none;backdrop-filter:none;background:var(--bg)}
+  .nav{position:fixed;top:0;right:0;bottom:0;left:auto;z-index:1;width:min(360px,86vw);margin:0;display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:96px 20px 28px;background:var(--bg);border-left:1px solid var(--line);box-shadow:-30px 0 60px rgba(11,11,11,.18);overflow-y:auto;overscroll-behavior:contain;transform:translateX(105%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),visibility 0s .45s}
+  .menu-btn{position:relative;z-index:2}
+  .nav.open{transform:none;visibility:visible;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+  .nav a{font-size:16px;padding:14px 18px;letter-spacing:.04em;text-transform:uppercase}
 }
 @media (max-width:900px){
   .hero .wrap,.impact-sec,.proc,.contact-grid{grid-template-columns:minmax(0,1fr)}
@@ -735,6 +747,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     </div>
   </div>
 </header>
+<div class="nav-scrim" aria-hidden="true"></div>
 
 <main>
 
@@ -1083,7 +1096,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
         </div>
       </div>
       <div class="impact-fig contact-fig">
-        <span class="bubble"><span class="mn">Надад бичээрэй!</span><span class="en">Write to me!</span></span>
+        <span class="bubble"><span class="mn">Надтай бичээрэй!</span><span class="en">Chat with me!</span></span>
         <span class="floaty" aria-hidden="true"><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg></span>
         <span class="ground" aria-hidden="true"></span>
         <svg class="badge" viewBox="0 0 140 140" role="img" aria-label="Combating desertification"><use href="#i-badge"/></svg>
@@ -1368,7 +1381,8 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
 
 <script>
 (function(){
-  // Sooton order bot: asks a few questions, then hands the finished order to WhatsApp (or email)
+  // Sooton chat: free questions go to Claude via /api/chat; orders run a short scripted form
+  // that hands the finished order to WhatsApp (or email). Without the API it falls back to canned answers.
   var card=document.querySelector('.chat-card'); if(!card) return;
   var log=card.querySelector('.chat-log'), quick=card.querySelector('.chat-quick'), form=card.querySelector('.chat-form'), input=card.querySelector('.chat-in');
   var WA='97691918097', MAIL='hello@shambala.today';
@@ -1393,14 +1407,15 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
      ok:function(v){return v.replace(/\D/g,'').length>=8;},bad:["Дугаар дор хаяж 8 оронтой байх ёстой. Дахин бичнэ үү 🙂","That number looks too short — at least 8 digits please 🙂"]},
     {k:'note',ask:["Нэмэлт хүсэлт, хүссэн хугацаа байвал бичээрэй. Байхгүй бол «Алгасах» дарна уу.","Anything else — wishes or a deadline? Or tap “Skip”."],ph:["Нэмэлт хүсэлт","Extra details"],lbl:["Нэмэлт","Notes"],skip:true}
   ];
-  var order={}, step=-1;
+  var order={}, step=-1, hist=[], busy=false;
 
   function start(){
-    log.innerHTML='';quick.innerHTML='';order={};step=-1;input.type='text';
+    busy=false;
+    log.innerHTML='';quick.innerHTML='';order={};step=-1;hist=[];input.type='text';
     say(["Сайн байна уу! Би Соотон 🙂 Танаас захиалга авахад бэлэн байна.","Hi! I'm Sooton 🙂 I'm ready to take your order."],function(){
-      say(["Танд аль үйлчилгээ хэрэгтэй вэ? Асуулт байвал бичээрэй.","Which service do you need? Or type a question."],function(){
-        ph(["Асуултаа бичээрэй…","Type a question…"]);
-        chips(PK.map(function(p){return {t:p,go:pick};}));
+      say(["Юу ч асууж болно — эсвэл доороос үйлчилгээгээ сонгоод захиалга өгөөрэй.","Ask me anything — or pick a service below to order."],function(){
+        ph(["Асуултаа бичээрэй…","Ask me anything…"]);
+        chips(PK.map(function(p){return {t:p,go:pick};}).concat(QS.map(function(q){return {t:q,cls:'ghost',go:function(t){ask(en()?t[1]:t[0]);}};})));
       });
     });
   }
@@ -1432,7 +1447,30 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
   }
   var thanked=false;
   function done(){ if(thanked) return; thanked=true; setTimeout(function(){ say(["Захиалгыг тань хүлээн авлаа 🎉 Бид удахгүй тантай холбогдоно.","Got it 🎉 We'll be in touch soon."]); },400); }
-  // quick answers for questions typed before a service is picked
+  var QS=[["Үнэ хэд вэ?","How much is it?"],["Хэр удах вэ?","How long does it take?"]];
+  function orderChips(){ chips(PK.map(function(p){return {t:p,go:pick};})); }
+  // free questions: stream Claude's answer from /api/chat
+  function ask(v){
+    if(busy) return; busy=true; quick.innerHTML='';
+    var meEl=add('me',v); hist.push({role:'user',content:v});
+    var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
+    var box=null, txt='';
+    function show(){ var vis=txt.replace(/\[\[(ORDER|ERROR)\]\]/g,'').replace(/\*\*/g,'').trim(); if(!vis) return; if(!box){ty.remove();box=add('bot','');} box.textContent=vis; log.scrollTop=log.scrollHeight; }
+    function fail(){ ty.remove(); if(box) box.remove(); hist.pop(); busy=false; meEl.remove(); offline(v); }
+    fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:hist,lang:en()?'en':'mn'})})
+      .then(function(r){
+        if(!r.ok||!r.body) throw new Error('http '+r.status);
+        var rd=r.body.getReader(), dec=new TextDecoder();
+        return (function pump(){ return rd.read().then(function(x){ if(x.done) return; txt+=dec.decode(x.value,{stream:true}); show(); return pump(); }); })();
+      })
+      .then(function(){
+        if(/\[\[ERROR\]\]/.test(txt)||!txt.replace(/\[\[ORDER\]\]/g,'').trim()) return fail();
+        ty.remove(); hist.push({role:'assistant',content:txt.replace(/\[\[ORDER\]\]/g,'').trim()}); busy=false;
+        if(/\[\[ORDER\]\]/.test(txt)) orderChips();
+      })
+      .catch(fail);
+  }
+  // canned answers when the chat server isn't reachable
   var FAQ=[
     {re:/үнэ|үнийн|хэд|price|cost|how much/i,a:["Үр — ₮3,000,000, Суулгац — ₮6,000,000, Төгөл — ₮9,000,000. Жилийн үйлчилгээ ₮600,000/жил.","Seed ₮3,000,000, Sapling ₮6,000,000, Grove ₮9,000,000. Annual care is ₮600,000/year."]},
     {re:/хугацаа|хэзээ|долоо хоног|how long|when|weeks/i,a:["Сайтыг ойролцоогоор 2–3 долоо хоногт хүлээлгэн өгдөг.","A site is usually delivered in about 2–3 weeks."]},
@@ -1440,16 +1478,16 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     {re:/дэлгүүр|төлбөр|shop|store|payment/i,a:["Онлайн дэлгүүр, төлбөр нь Төгөл багцад багтана.","An online store with payments is the Grove package."]},
     {re:/хэл|англи|language|english/i,a:["Суулгац, Төгөл багцын сайт монгол, англи хоёр хэлтэй.","Sapling and Grove sites come in Mongolian and English."]}
   ];
+  function offline(v){
+    add('me',v);
+    var f=FAQ.filter(function(q){return q.re.test(v);})[0];
+    if(f) say(f.a,function(){ say(["Захиалга өгөх бол доороос үйлчилгээгээ сонгоорой.","To order, pick a service below."],orderChips); });
+    else say(["Уучлаарай, яг одоо үүнд хариулж чадахгүй нь. Үйлчилгээгээ сонговол баг тантай холбогдож бүх асуултад тань хариулна 🙂","Sorry, I can't answer that right now. Pick a service and the team will get in touch to answer everything 🙂"],orderChips);
+  }
   form.addEventListener('submit',function(e){
     e.preventDefault(); var v=input.value.trim(); if(!v) return; input.value='';
+    if(step<0||step>=STEPS.length){ ask(v); return; }
     add('me',v);
-    if(step<0){
-      var f=FAQ.filter(function(q){return q.re.test(v);})[0];
-      if(f) say(f.a,function(){ say(["Аль үйлчилгээг сонгох вэ?","Which service would you like?"]); });
-      else say(["Ойлголоо! Үүнийг захиалгад тань тэмдэглэе 🙂","Got it! I'll note that in your order 🙂"],function(){ quick.innerHTML=''; order.pkg=[v,v]; next(); });
-      return;
-    }
-    if(step>=STEPS.length){ say(["Доорх товчоор захиалгаа илгээгээрэй 🙂","Use the buttons below to send your order 🙂"]); return; }
     var st=STEPS[step];
     if(st.ok&&!st.ok(v)){ say(st.bad); return; }
     quick.innerHTML=''; order[st.k]=v; next();
@@ -1494,7 +1532,8 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     document.documentElement.style.setProperty('--z',z.toFixed(3));
   }
   var btn=document.querySelector('.menu-btn'), nav=document.getElementById('mainnav');
-  function set(o){ btn.setAttribute('aria-expanded',String(o)); nav.classList.toggle('open',o); }
+  var scrim=document.querySelector('.nav-scrim');
+  function set(o){ btn.setAttribute('aria-expanded',String(o)); nav.classList.toggle('open',o); scrim.classList.toggle('show',o); }
   btn.addEventListener('click',function(e){ e.stopPropagation(); set(btn.getAttribute('aria-expanded')!=='true'); });
   nav.addEventListener('click',function(e){ if(e.target.closest('a')) set(false); });
   document.addEventListener('click',function(e){ if(!e.target.closest('.site-head')) set(false); });
