@@ -388,19 +388,67 @@ section[id],.view{scroll-margin-top:72px}
 /* contact */
 .contact-cols{display:flex;flex-wrap:wrap;gap:20px;margin-top:8px}
 .contact-cols .card{flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:10px;overflow:visible}
-.contact-cols .c-black::before{content:"";position:absolute;left:26px;top:-14px;width:130px;height:30px;background:var(--lime);transform:rotate(-5deg);border-radius:3px}
+.contact-cols .phone-card::before{content:"";position:absolute;left:26px;top:-14px;width:130px;height:30px;background:var(--lime);transform:rotate(-5deg);border-radius:3px}
 .lbl{font-family:var(--mono);font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .c-black .lbl{color:var(--lime)}
 .val{font-size:clamp(19px,2vw,24px);font-weight:800;line-height:1.5;color:inherit!important}
-.phone-card{max-width:520px;gap:6px!important}
-.ph-row{display:flex;align-items:center;gap:10px;padding-block:10px;border-top:1px solid rgba(255,255,255,.12)}
-.ph-row:first-of-type{border-top:0}
-.ph-num{flex:1;min-width:0;font-size:clamp(19px,2.2vw,26px);font-weight:800;line-height:1.2;text-decoration:none;color:#fff;white-space:nowrap}
-.ph-ic{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;color:#fff;transition:transform .2s}
-.ph-ic svg{width:24px;height:24px}
-.ph-ic:hover{transform:translateY(-2px) scale(1.05)}
-.ph-ic.wa{background:#25D366}
-.ph-ic.vb{background:#7360F2}
+.phone-card{max-width:600px;gap:12px!important;padding:clamp(26px,3vw,34px)!important}
+.chat-head{display:flex;align-items:center;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.chat-av{flex:none;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:#F4EADB url(img/sooton-smile.webp) 50% 62%/290% no-repeat}
+.chat-head b{display:block;font-size:17px;font-weight:800;line-height:1.2}
+.chat-head small{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+.chat-head small i{width:8px;height:8px;border-radius:50%;background:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,.2)}
+.chat-log{display:flex;flex-direction:column;gap:8px;height:300px;overflow-y:auto;padding:4px 2px;scroll-behavior:smooth;overscroll-behavior:contain}
+.msg{max-width:84%;padding:10px 14px;border-radius:18px;font-size:15px;line-height:1.45;white-space:pre-line;color:var(--ink)!important}
+.msg.bot{align-self:flex-start;background:var(--soft);border-bottom-left-radius:6px}
+.msg.me{align-self:flex-end;background:var(--ink);color:#fff!important;border-bottom-right-radius:6px}
+.msg.sum{background:var(--lime);font-weight:600}
+.typing{align-self:flex-start;display:flex;gap:4px;padding:14px 16px;border-radius:18px;background:var(--soft)}
+.typing i{width:7px;height:7px;border-radius:50%;background:var(--dim);animation:tdot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{transform:translateY(0);opacity:.5}30%{transform:translateY(-5px);opacity:1}}
+.chat-quick{display:flex;flex-wrap:wrap;gap:8px}
+.chat-quick:empty{display:none}
+.qr{min-height:38px;padding:0 14px;border-radius:999px;border:1.5px solid var(--ink);background:var(--paper);font:700 14px var(--body);color:var(--ink);cursor:pointer;transition:background .2s,transform .2s}
+.qr:hover{background:var(--lime);transform:translateY(-1px)}
+.qr.wa{background:#25D366;border-color:#25D366;color:#fff;display:inline-flex;align-items:center;gap:8px}
+.qr.wa svg{width:18px;height:18px}
+.qr.ghost{border-color:var(--line);color:var(--muted)}
+.chat-form{display:flex;gap:8px;padding:6px;border-radius:999px;background:var(--soft)}
+.chat-in{flex:1;min-width:0;border:0;background:none;padding:0 12px;font:500 16px var(--body);color:var(--ink);outline:none}
+.chat-in::placeholder{color:var(--dim)}
+.chat-send{flex:none;width:44px;height:44px;border-radius:50%;border:0;background:var(--ink);color:var(--lime);display:grid;place-items:center;cursor:pointer}
+.chat-send svg{width:18px;height:18px}
+.chat-form:focus-within{box-shadow:0 0 0 2px var(--ink)}
+/* contact: a hopping Sooton, a little Sooton walking on the card, ringing phones */
+.contact-fig .bubble{left:-12%;top:12%;right:auto}
+.contact-fig img.char{height:clamp(300px,32vw,460px)}
+.contact-fig .badge{left:-16%;right:auto;top:auto;bottom:6%}
+.chat-log{height:260px}
+.contact-fig .ground{position:absolute;left:50%;bottom:2%;width:42%;height:26px;margin-left:-21%;border-radius:50%;background:radial-gradient(closest-side,rgba(11,11,11,.22),transparent);z-index:-1}
+.floaty{position:absolute;left:30%;top:38%;width:40%;height:40%;pointer-events:none}
+.floaty svg{position:absolute;bottom:0;width:22px;height:22px;opacity:0;color:#B5E61E}
+.floaty svg:nth-child(1){left:0}
+.floaty svg:nth-child(2){left:30%;color:var(--pink);width:16px;height:16px}
+.floaty svg:nth-child(3){left:62%}
+.floaty svg:nth-child(4){left:88%;color:var(--sky);width:14px;height:14px}
+.phone-card{overflow:visible!important}
+.contact-grid .contact-cols{margin-top:40px}
+@keyframes hop{0%,100%{transform:translateY(0) scale(1.03,.97)}12%{transform:translateY(0) scale(1,1)}45%{transform:translateY(-34px) rotate(-3deg)}60%{transform:translateY(-30px) rotate(2deg)}88%{transform:translateY(0) scale(1,1)}}
+@keyframes ground{0%,100%{transform:scale(1);opacity:1}45%,60%{transform:scale(.68);opacity:.55}}
+@keyframes rise{0%{opacity:0;transform:translateY(0) scale(.4) rotate(0)}20%{opacity:1}100%{opacity:0;transform:translateY(-150px) scale(1.1) rotate(90deg)}}
+@keyframes ring{0%,62%,100%{transform:rotate(0)}66%,74%,82%{transform:rotate(-16deg)}70%,78%,86%{transform:rotate(16deg)}}
+@keyframes waPulse{0%{box-shadow:0 0 0 0 rgba(37,211,102,.6)}70%,100%{box-shadow:0 0 0 14px rgba(37,211,102,0)}}
+@keyframes listen{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(-3deg) translateY(-4px)}60%{transform:rotate(2deg) translateY(-2px)}}
+@keyframes wobble{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}
+@media (prefers-reduced-motion:no-preference){
+  .contact-fig img.char{animation:charIn 1.1s .15s cubic-bezier(.2,.7,.2,1) both,listen 4s 1.3s ease-in-out infinite;transform-origin:50% 100%}
+  .contact-fig .bubble{animation:bubbleIn .6s .9s cubic-bezier(.2,.7,.2,1) both,wobble 2.4s 1.5s ease-in-out infinite}
+  .floaty svg{animation:rise 3s ease-out infinite}
+  .floaty svg:nth-child(2){animation-delay:.8s}
+  .floaty svg:nth-child(3){animation-delay:1.6s}
+  .floaty svg:nth-child(4){animation-delay:2.3s}
+}
 .contact-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px 40px;align-items:center}
 .contact-grid .h-xl{font-size:clamp(38px,5.4vw,78px);margin-bottom:34px}
 
@@ -522,9 +570,6 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
   .btn{min-height:48px;font-size:14px;padding-left:20px}
   .btn--ghost{padding:0 20px}
   .btn .arr{width:32px;height:32px}
-  .ph-num{font-size:18px}
-  .ph-ic{width:40px;height:40px}
-  .ph-ic svg{width:21px;height:21px}
   .bubble{font-size:13px;padding:8px 12px}
   .hero-fig img.char{height:clamp(280px,78vw,380px)}
   .impact-fig img.char{height:clamp(260px,70vw,360px)}
@@ -656,7 +701,6 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
   <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" d="M12 4v16M4 12h16"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" d="M7 7l10 10M17 7 7 17"/></symbol>
   <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></symbol>
-  <symbol id="i-vb" viewBox="0 0 24 24"><path fill="currentColor" d="M11.4 0C9.473.028 5.333.344 3.02 2.467 1.302 4.187.696 6.7.633 9.817.57 12.933.488 18.776 6.12 20.36h.003l-.004 2.416s-.037.977.61 1.177c.777.242 1.234-.5 1.98-1.302.407-.44.972-1.084 1.397-1.58 3.85.326 6.812-.416 7.15-.525.776-.252 5.176-.816 5.892-6.657.74-6.020-.36-9.830-2.340-11.546-.596-.55-3.006-2.3-8.375-2.323 0 0-.395-.025-1.037-.017zm.058 1.693c.545-.004.88.017.88.017 4.542.02 6.717 1.388 7.222 1.846 1.675 1.435 2.530 4.868 1.906 9.897v.002c-.604 4.878-4.174 5.184-4.832 5.395-.28.09-2.882.737-6.153.524 0 0-2.436 2.940-3.197 3.704-.12.12-.26.167-.352.144-.13-.033-.166-.188-.165-.414l.02-4.018c-4.762-1.32-4.485-6.292-4.43-8.895.054-2.604.543-4.738 1.996-6.173 1.96-1.773 5.474-2.018 7.11-2.03zm.38 2.602c-.167 0-.303.135-.304.302 0 .167.133.303.3.305 1.624.01 2.946.537 4.028 1.592 1.073 1.046 1.62 2.468 1.633 4.334.002.167.14.3.307.3.166-.002.3-.138.3-.304-.014-1.984-.618-3.596-1.816-4.764-1.19-1.16-2.692-1.753-4.447-1.765zm-3.96.695c-.19-.032-.4.005-.616.117l-.01.002c-.43.247-.816.562-1.146.932-.002.004-.006.004-.008.008-.267.323-.42.638-.46.948-.008.046-.01.093-.007.14 0 .136.022.27.065.4l.013.01c.135.48.473 1.276 1.205 2.604.42.768.903 1.5 1.446 2.186.27.344.56.673.87.984l.132.132c.31.308.64.6.984.87.686.543 1.418 1.027 2.186 1.447 1.328.733 2.126 1.07 2.604 1.206l.01.014c.13.042.265.064.402.063.046.002.092 0 .138-.008.31-.036.627-.19.948-.46.004 0 .003-.002.008-.005.37-.33.683-.72.93-1.148l.003-.01c.225-.432.15-.842-.18-1.12-.004 0-.698-.58-1.037-.83-.36-.255-.73-.492-1.113-.71-.51-.285-1.032-.106-1.248.174l-.447.564c-.23.283-.657.246-.657.246-3.120-.796-3.955-3.955-3.955-3.955s-.037-.426.248-.656l.563-.448c.277-.215.456-.737.17-1.248-.217-.383-.454-.756-.71-1.115-.25-.34-.826-1.033-.83-1.035-.137-.165-.31-.265-.502-.297zm4.49.88c-.158.002-.29.124-.3.282-.01.167.115.312.282.324 1.16.085 2.017.466 2.645 1.15.63.688.93 1.524.906 2.57-.002.168.13.306.3.31.166.003.305-.13.31-.297.025-1.175-.334-2.193-1.067-2.994-.74-.81-1.777-1.253-3.050-1.346h-.024zm.463 1.630c-.16.002-.29.127-.3.287-.008.167.12.31.288.32.523.028.875.175 1.113.422.24.245.388.62.416 1.164.01.167.15.295.318.287.167-.008.295-.15.287-.317-.03-.644-.215-1.178-.58-1.557-.367-.378-.893-.574-1.520-.607h-.018z"/></symbol>
   <symbol id="i-badge" viewBox="0 0 140 140">
     <defs><path id="ring" d="M70,70 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
     <text font-family="Montserrat, Arial, sans-serif" font-weight="700" font-size="12.5" letter-spacing="2.2" fill="#0B0B0B"><textPath href="#ring">COMBATING DESERTIFICATION ·</textPath></text>
@@ -1030,13 +1074,21 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
         <p class="eyebrow"><span class="mn">Холбоо барих</span><span class="en">Contact</span></p>
         <h2 class="h-xl"><span class="mn">Багцаа сонгоод <span class="mark">бидэнд</span> мэдэгдээрэй</span><span class="en">Choose your package and <span class="mark">let us know</span></span></h2>
         <div class="contact-cols">
-          <div class="card c-black phone-card"><p class="lbl"><span class="mn">Утас</span><span class="en">Phone</span> · WhatsApp · Viber</p><div class="ph-row"><a class="ph-num" href="tel:+97691918097">+976 9191 8097</a><a class="ph-ic wa" href="https://wa.me/97691918097" target="_blank" rel="noopener" aria-label="WhatsApp +976 9191 8097" title="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a><a class="ph-ic vb" href="viber://chat?number=%2B97691918097" aria-label="Viber +976 9191 8097" title="Viber"><svg aria-hidden="true"><use href="#i-vb"/></svg></a></div><div class="ph-row"><a class="ph-num" href="tel:+97691198482">+976 9119 8482</a><a class="ph-ic wa" href="https://wa.me/97691198482" target="_blank" rel="noopener" aria-label="WhatsApp +976 9119 8482" title="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a><a class="ph-ic vb" href="viber://chat?number=%2B97691198482" aria-label="Viber +976 9119 8482" title="Viber"><svg aria-hidden="true"><use href="#i-vb"/></svg></a></div></div>
+          <div class="card phone-card chat-card">
+            <div class="chat-head"><span class="chat-av" aria-hidden="true"></span><span><b><span class="mn">Соотон</span><span class="en">Sooton</span></b><small><i></i><span class="mn">Онлайн · захиалга авна</span><span class="en">Online · taking orders</span></small></span></div>
+            <div class="chat-log" role="log" aria-live="polite" aria-label="Соотонтой чат / Chat with Sooton"></div>
+            <div class="chat-quick"></div>
+            <form class="chat-form" autocomplete="on"><input class="chat-in" type="text" aria-label="Мессеж / Message" placeholder=""><button type="submit" class="chat-send" aria-label="Илгээх / Send"><svg aria-hidden="true"><use href="#i-arrow"/></svg></button></form>
+          </div>
         </div>
       </div>
-      <div class="impact-fig">
+      <div class="impact-fig contact-fig">
+        <span class="bubble"><span class="mn">Надад бичээрэй!</span><span class="en">Write to me!</span></span>
+        <span class="floaty" aria-hidden="true"><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg><svg><use href="#i-spark"/></svg></span>
+        <span class="ground" aria-hidden="true"></span>
         <svg class="badge" viewBox="0 0 140 140" role="img" aria-label="Combating desertification"><use href="#i-badge"/></svg>
         <svg class="spark spark--lime" aria-hidden="true"><use href="#i-spark"/></svg>
-        <img class="char" src="img/sooton-jump.webp" alt="" width="900" height="1349" loading="lazy">
+        <img class="char" src="img/sooton-smile.webp" alt="" width="900" height="1349" loading="lazy">
       </div>
     </div>
   </section>
@@ -1311,6 +1363,98 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
   })();
   // magnetic buttons
   document.addEventListener('pointermove',function(e){ var b=e.target.closest&&e.target.closest('.btn,.lang button'); document.querySelectorAll('.btn.mag,.lang button.mag').forEach(function(o){ if(o!==b){ o.style.translate='0 0'; o.classList.remove('mag'); }}); if(!b) return; var r=b.getBoundingClientRect(); var dx=(e.clientX-(r.left+r.width/2))*.2, dy=(e.clientY-(r.top+r.height/2))*.3; b.style.translate=dx+'px '+dy+'px'; b.style.transition='translate .2s ease,transform .2s,box-shadow .2s'; b.classList.add('mag'); });
+})();
+</script>
+
+<script>
+(function(){
+  // Sooton order bot: asks a few questions, then hands the finished order to WhatsApp (or email)
+  var card=document.querySelector('.chat-card'); if(!card) return;
+  var log=card.querySelector('.chat-log'), quick=card.querySelector('.chat-quick'), form=card.querySelector('.chat-form'), input=card.querySelector('.chat-in');
+  var WA='97691918097', MAIL='hello@shambala.today';
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function en(){return document.documentElement.getAttribute('data-lang')==='en';}
+  function bi(t){var s=document.createElement('span');var a=document.createElement('span');a.className='mn';a.textContent=t[0];var b=document.createElement('span');b.className='en';b.textContent=t[1];s.appendChild(a);s.appendChild(b);return s;}
+  function add(cls,content){var d=document.createElement('div');d.className='msg '+cls;if(typeof content==='string')d.textContent=content;else d.appendChild(bi(content));log.appendChild(d);log.scrollTop=log.scrollHeight;return d;}
+  function say(t,cb,cls){
+    if(reduce){add('bot'+(cls?' '+cls:''),t);if(cb)cb();return;}
+    var ty=document.createElement('div');ty.className='typing';ty.innerHTML='<i></i><i></i><i></i>';log.appendChild(ty);log.scrollTop=log.scrollHeight;
+    setTimeout(function(){ty.remove();add('bot'+(cls?' '+cls:''),t);if(cb)cb();},650);
+  }
+  function chips(list){quick.innerHTML='';list.forEach(function(c){var b=document.createElement('button');b.type='button';b.className='qr'+(c.cls?' '+c.cls:'');if(c.icon)b.innerHTML=c.icon;b.appendChild(bi(c.t));b.addEventListener('click',function(){c.go(c.t);});quick.appendChild(b);});}
+  function ph(t){input._ph=t;input.placeholder=en()?t[1]:t[0];}
+  new MutationObserver(function(){if(input._ph)ph(input._ph);}).observe(document.documentElement,{attributes:true,attributeFilter:['data-lang']});
+
+  var PK=[["Үр — ₮3,000,000","Seed — ₮3,000,000"],["Суулгац — ₮6,000,000","Sapling — ₮6,000,000"],["Төгөл — ₮9,000,000","Grove — ₮9,000,000"],["Брэндинг, постер","Branding, posters"],["Зөвлөгөө авах","Just advice"]];
+  var STEPS=[
+    {k:'org',ask:["Байгууллагынхаа нэрийг бичнэ үү.","What's your organisation called?"],ph:["Байгууллагын нэр","Organisation name"],lbl:["Байгууллага","Organisation"]},
+    {k:'name',ask:["Таныг хэн гэдэг вэ?","And your name?"],ph:["Таны нэр","Your name"],lbl:["Нэр","Name"]},
+    {k:'phone',ask:["Бид тантай холбогдох утасны дугаараа үлдээнэ үү.","Which phone number can we reach you on?"],ph:["Утасны дугаар","Phone number"],lbl:["Утас","Phone"],type:'tel',
+     ok:function(v){return v.replace(/\D/g,'').length>=8;},bad:["Дугаар дор хаяж 8 оронтой байх ёстой. Дахин бичнэ үү 🙂","That number looks too short — at least 8 digits please 🙂"]},
+    {k:'note',ask:["Нэмэлт хүсэлт, хүссэн хугацаа байвал бичээрэй. Байхгүй бол «Алгасах» дарна уу.","Anything else — wishes or a deadline? Or tap “Skip”."],ph:["Нэмэлт хүсэлт","Extra details"],lbl:["Нэмэлт","Notes"],skip:true}
+  ];
+  var order={}, step=-1;
+
+  function start(){
+    log.innerHTML='';quick.innerHTML='';order={};step=-1;input.type='text';
+    say(["Сайн байна уу! Би Соотон 🙂 Танаас захиалга авахад бэлэн байна.","Hi! I'm Sooton 🙂 I'm ready to take your order."],function(){
+      say(["Танд аль үйлчилгээ хэрэгтэй вэ? Асуулт байвал бичээрэй.","Which service do you need? Or type a question."],function(){
+        ph(["Асуултаа бичээрэй…","Type a question…"]);
+        chips(PK.map(function(p){return {t:p,go:pick};}));
+      });
+    });
+  }
+  function pick(t){quick.innerHTML='';add('me',t);order.pkg=t;next();}
+  function next(){
+    step++;
+    if(step>=STEPS.length) return summary();
+    var st=STEPS[step];input.type=st.type||'text';ph(st.ph);
+    say(st.ask,function(){ if(st.skip) chips([{t:["Алгасах","Skip"],cls:'ghost',go:function(t){quick.innerHTML='';add('me',t);order[st.k]=null;next();}}]); });
+  }
+  function text(lang){
+    var L=lang==='en'?1:0, lines=[];
+    lines.push((L?"Service":"Үйлчилгээ")+": "+order.pkg[L]);
+    STEPS.forEach(function(st){ if(order[st.k]) lines.push(st.lbl[L]+": "+order[st.k]); });
+    return lines.join("\n");
+  }
+  function summary(){
+    input.type='text';ph(["Захиалга бэлэн","Order ready"]);
+    say(["Баярлалаа! Таны захиалга:","Thank you! Here's your order:"],function(){
+      add('bot sum',[text('mn'),text('en')]);
+      say(["«WhatsApp-аар илгээх» дарахад захиалга бичигдсэн байна — зөвхөн илгээх товчийг дарна уу.","Tap “Send via WhatsApp” — the order is already written, just hit send."],function(){
+        chips([
+          {t:["WhatsApp-аар илгээх","Send via WhatsApp"],cls:'wa',icon:'<svg aria-hidden="true"><use href="#i-wa"/></svg>',go:function(){var L=en()?'en':'mn';window.open('https://wa.me/'+WA+'?text='+encodeURIComponent((L==='en'?"Hello! I'd like to order from CodeForEarth.\n":"Сайн байна уу! CodeForEarth-д захиалга өгье.\n")+text(L)),'_blank','noopener');done();}},
+          {t:["Имэйлээр илгээх","Send by email"],go:function(){var L=en()?'en':'mn';location.href='mailto:'+MAIL+'?subject='+encodeURIComponent('CodeForEarth — '+(L==='en'?'Order':'Захиалга')+': '+order.pkg[L==='en'?1:0])+'&body='+encodeURIComponent(text(L));done();}},
+          {t:["Дахин эхлэх","Start over"],cls:'ghost',go:start}
+        ]);
+      });
+    });
+  }
+  var thanked=false;
+  function done(){ if(thanked) return; thanked=true; setTimeout(function(){ say(["Захиалгыг тань хүлээн авлаа 🎉 Бид удахгүй тантай холбогдоно.","Got it 🎉 We'll be in touch soon."]); },400); }
+  // quick answers for questions typed before a service is picked
+  var FAQ=[
+    {re:/үнэ|үнийн|хэд|price|cost|how much/i,a:["Үр — ₮3,000,000, Суулгац — ₮6,000,000, Төгөл — ₮9,000,000. Жилийн үйлчилгээ ₮600,000/жил.","Seed ₮3,000,000, Sapling ₮6,000,000, Grove ₮9,000,000. Annual care is ₮600,000/year."]},
+    {re:/хугацаа|хэзээ|долоо хоног|how long|when|weeks/i,a:["Сайтыг ойролцоогоор 2–3 долоо хоногт хүлээлгэн өгдөг.","A site is usually delivered in about 2–3 weeks."]},
+    {re:/брэнд|лого|постер|brand|logo|poster/i,a:["Брэндбүүк бүх багцад багтана. Брэндинг, постерын үнийг тусад нь тохирно.","A brand book comes with every package; branding and posters are priced separately."]},
+    {re:/дэлгүүр|төлбөр|shop|store|payment/i,a:["Онлайн дэлгүүр, төлбөр нь Төгөл багцад багтана.","An online store with payments is the Grove package."]},
+    {re:/хэл|англи|language|english/i,a:["Суулгац, Төгөл багцын сайт монгол, англи хоёр хэлтэй.","Sapling and Grove sites come in Mongolian and English."]}
+  ];
+  form.addEventListener('submit',function(e){
+    e.preventDefault(); var v=input.value.trim(); if(!v) return; input.value='';
+    add('me',v);
+    if(step<0){
+      var f=FAQ.filter(function(q){return q.re.test(v);})[0];
+      if(f) say(f.a,function(){ say(["Аль үйлчилгээг сонгох вэ?","Which service would you like?"]); });
+      else say(["Ойлголоо! Үүнийг захиалгад тань тэмдэглэе 🙂","Got it! I'll note that in your order 🙂"],function(){ quick.innerHTML=''; order.pkg=[v,v]; next(); });
+      return;
+    }
+    if(step>=STEPS.length){ say(["Доорх товчоор захиалгаа илгээгээрэй 🙂","Use the buttons below to send your order 🙂"]); return; }
+    var st=STEPS[step];
+    if(st.ok&&!st.ok(v)){ say(st.bad); return; }
+    quick.innerHTML=''; order[st.k]=v; next();
+  });
+  start();
 })();
 </script>
 
