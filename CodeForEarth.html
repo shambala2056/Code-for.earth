@@ -67,6 +67,8 @@ section[id],.view{scroll-margin-top:72px}
 .mark{background:linear-gradient(var(--lime),var(--lime)) 0 58%/100% 82% no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .08em;margin:0 -.04em}
 .muted{color:var(--muted)}
 .note{margin-top:32px;font-size:16px;color:var(--muted);max-width:80ch}
+.nw{white-space:nowrap}
+.ldot{display:inline-block;width:.42em;height:.42em;margin:0 .55em;border-radius:50%;background:var(--lime);box-shadow:0 0 0 2px var(--ink);vertical-align:.12em}
 .lead{font-size:clamp(17px,1.5vw,20px);line-height:1.55;color:var(--muted);max-width:44ch}
 
 /* buttons, pills, bubbles */
@@ -155,7 +157,8 @@ section[id],.view{scroll-margin-top:72px}
 .hero .wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);align-items:end;gap:24px;padding-top:clamp(36px,6vw,80px)}
 .hero-text{padding-bottom:clamp(90px,10vw,140px)}
 .hero-text .h-xl{margin-bottom:26px}
-.hero-text .lead{margin-bottom:26px}
+.hero-text .lead{margin-bottom:26px;max-width:none;font-size:15px;font-weight:600;line-height:1.7;letter-spacing:.02em;text-transform:uppercase}
+.fitl{white-space:nowrap}
 .hero-text .pills{margin-bottom:30px}
 .hero-fig{position:relative;justify-self:center;align-self:end}
 .hero-fig img.char{display:block;height:clamp(380px,44vw,600px);width:auto;filter:drop-shadow(0 30px 40px rgba(11,11,11,.16))}
@@ -758,7 +761,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
       <div class="hero-text">
         <p class="eyebrow">CodeForEarth · 2026</p>
         <h1 class="h-xl"><span class="mn">Вэб сайт<br><span class="mark">+брэндинг</span></span><span class="en">Website<br><span class="mark">+branding</span></span></h1>
-        <p class="lead"><span class="mn">Ойлгомжтой бүтэц, найдвартай ажиллагаа, нэгдмэл брэнд. Байгууллагад зориулсан — нэг багаас, нэг дор.</span><span class="en">Clear structure, reliable performance, a consistent brand. Made for organisations — one team, one place.</span></p>
+        <p class="lead"><span class="mn"><span class="fitl">Ойлгомжтой бүтэц<i class="ldot" aria-hidden="true"></i>найдвартай ажиллагаа<i class="ldot" aria-hidden="true"></i>нэгдмэл брэнд</span></span><span class="en"><span class="fitl">Clear structure<i class="ldot" aria-hidden="true"></i>reliable performance<i class="ldot" aria-hidden="true"></i>a consistent brand</span></span></p>
         <div class="pills">
           <span class="pill pill--ink"><i><svg><use href="#i-arrow"/></svg></i><span class="mn">Утас, таблет, компьютерт</span><span class="en">Phone, tablet, desktop</span></span>
           <span class="pill"><i><svg><use href="#i-arrow"/></svg></i><span class="mn">Монгол · Англи</span><span class="en">Mongolian · English</span></span>
@@ -819,7 +822,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     <div class="wrap prob">
       <div>
         <p class="eyebrow"><span class="mn">Танил асуудал</span><span class="en">A familiar problem</span></p>
-        <h2 class="h-l"><span class="mn">Сайт хийлгэх нь эхлэл, <span class="mark">тогтвортой ажиллах</span> нь л хамгийн чухал</span><span class="en">Building a site is the start — <span class="mark">keeping it running</span> is what matters most</span></h2>
+        <h2 class="h-l"><span class="mn">Сайт хийлгэх нь эхлэл, <span class="mark">тогтвортой ажиллах</span> нь л хамгийн чухал</span><span class="en">Building a site is the start <span class="mark">keeping it running</span> is what matters most</span></h2>
         <p class="big-text"><span class="mn">Вэб сайт бол байгууллагын өдөр, шөнөгүй ажилладаг <span class="hl">анхны танилцуулга</span>. Тасалдал бүр харилцагчийн итгэлд нөлөөлнө.</span><span class="en">A website is your organisation’s <span class="hl">first introduction</span>, working day and night. Every outage affects customer trust.</span></p>
         <div class="notes">
           <div class="card irow"><div class="ibox"><svg aria-hidden="true"><use href="#i-x"/></svg></div><p><span class="mn">Утсан дээр зөв харагддаггүй, удаан ачаалдаг.</span><span class="en">It doesn’t display properly on phones and loads slowly.</span></p><span class="when"><span class="mn">одоо</span><span class="en">now</span></span></div>
@@ -839,7 +842,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     <div class="wrap">
       <div class="sec-head sec-head--left"><div class="sec-title">
         <p class="eyebrow"><span class="mn">Шийдэл</span><span class="en">The solution</span></p>
-        <h2 class="h-l"><span class="mn">Бүтэц, брэнд, ажиллагаа, дэмжлэг — <span class="mark">нэг гэрээнд</span></span><span class="en">Structure, brand, performance, support — <span class="mark">in one contract</span></span></h2></div>
+        <h2 class="h-l"><span class="mn">Бүтэц, брэнд, ажиллагаа, дэмжлэг <span class="mark">нэг гэрээнд</span></span><span class="en">Structure, brand, performance, support <span class="mark">in one contract</span></span></h2></div>
         <div class="fig"><span class="bubble"><span class="mn">Бид засна!</span><span class="en">We’ll fix it!</span></span><svg class="spark spark--lime" aria-hidden="true"><use href="#i-spark"/></svg><img src="img/sooton-smile.webp" alt="" width="900" height="1349" loading="lazy"></div>
       </div>
       <div class="row3">
@@ -854,7 +857,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     <div class="wrap impact-sec">
       <div>
         <p class="eyebrow"><span class="mn">Бидний амлалт</span><span class="en">Our promise</span></p>
-        <h2 class="h-xl"><span class="mn">Код бүр<br><span class="mark">нөхөн</span><br>сэргээлт</span><span class="en">Every line<br>of code —<br><span class="mark">restoration</span></span></h2>
+        <h2 class="h-xl"><span class="mn">Код бүр<br><span class="mark">нөхөн</span><br>сэргээлт</span><span class="en">Every line<br>of code<br><span class="mark">restoration</span></span></h2>
         <p class="lead"><span class="mn">Бидний бүтээсэн сайт таны бизнесийг өсгөж, хийсэн ажил бүр байгалийг сэргээнэ.</span><span class="en">The site we build grows your business, and every project helps restore nature.</span></p>
       </div>
       <div class="impact-fig">
@@ -1028,7 +1031,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
   <section class="band" id="annual">
     <div class="wrap">
       <p class="eyebrow"><span class="mn">Жилийн үйлчилгээ</span><span class="en">Annual service</span></p>
-      <h2 class="h-l"><span class="mn">Нэг үйлчилгээ — <span class="mark">бүх арчилгаа</span></span><span class="en">One plan — <span class="mark">all the upkeep</span></span></h2>
+      <h2 class="h-l"><span class="mn">Нэг үйлчилгээ <span class="mark">бүх арчилгаа</span></span><span class="en">One plan <span class="mark">all the upkeep</span></span></h2>
       <div class="card annual">
         <div>
           <p class="annual-price"><span class="mark">₮600,000</span> <small><span class="mn">/ жил</span><span class="en">/ year</span></small></p>
@@ -1066,7 +1069,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     <div class="wrap">
       <div class="sec-head"><div class="sec-title">
         <p class="eyebrow"><span class="mn">Брэндинг ба дизайн</span><span class="en">Branding &amp; design</span></p>
-        <h2 class="h-l"><span class="mn">Вэб сайт ба брэнд — <span class="mark">нэг багаас</span></span><span class="en">Website and brand — <span class="mark">from one team</span></span></h2></div>
+        <h2 class="h-l"><span class="mn">Вэб сайт ба брэнд <span class="mark">нэг багаас</span></span><span class="en">Website and brand <span class="mark">from one team</span></span></h2></div>
         <div class="fig"><svg class="spark" aria-hidden="true"><use href="#i-spark"/></svg><img src="img/sooton-curious.webp" alt="" width="900" height="1349" loading="lazy"></div>
       </div>
       <div class="row3">
@@ -1321,6 +1324,19 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     var sm=row.querySelector("small"); b.appendChild(sm); sm.style.marginLeft="auto";
     make(b,row,t);
   });
+})();
+</script>
+
+<script>
+(function(){
+  // the hero line under the title spans exactly the width of "+БРЭНДИНГ"
+  var lead=document.querySelector('.hero-text .lead'), h1=document.querySelector('.hero-text .h-xl');
+  function fitLead(){ if(!lead||!h1) return; var k=document.documentElement.getAttribute('data-lang')==='en'?'.en':'.mn';
+    var a=h1.querySelector(k+' .mark'), b=lead.querySelector(k+' .fitl'); if(!a||!b) return; lead.style.fontSize='';
+    for(var i=0;i<3;i++){ var w=b.getBoundingClientRect().width; if(!w) return; lead.style.fontSize=(parseFloat(getComputedStyle(lead).fontSize)*a.getBoundingClientRect().width/w)+'px'; } }
+  fitLead(); if(document.fonts) document.fonts.ready.then(fitLead);
+  addEventListener('resize',fitLead);
+  new MutationObserver(fitLead).observe(document.documentElement,{attributes:true,attributeFilter:['data-lang']});
 })();
 </script>
 
