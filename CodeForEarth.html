@@ -159,6 +159,8 @@ section[id],.view{scroll-margin-top:72px}
 .hero-text .h-xl{margin-bottom:26px}
 .hero-text .lead{margin-bottom:26px;max-width:none;font-size:15px;font-weight:600;line-height:1.7;letter-spacing:.02em;text-transform:uppercase}
 .fitl{white-space:nowrap}
+html.phone .hero-text .lead{letter-spacing:.09em;margin-top:6px}
+html.phone .ldot{margin:0 1.1em;width:.55em;height:.55em}
 .hero-text .pills{margin-bottom:30px}
 .hero-fig{position:relative;justify-self:center;align-self:end}
 .hero-fig img.char{display:block;height:clamp(380px,44vw,600px);width:auto;filter:drop-shadow(0 30px 40px rgba(11,11,11,.16))}
@@ -762,14 +764,6 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
         <p class="eyebrow">CodeForEarth · 2026</p>
         <h1 class="h-xl"><span class="mn">Вэб сайт<br><span class="mark">+брэндинг</span></span><span class="en">Website<br><span class="mark">+branding</span></span></h1>
         <p class="lead"><span class="mn"><span class="fitl">Ойлгомжтой бүтэц<i class="ldot" aria-hidden="true"></i>найдвартай ажиллагаа<i class="ldot" aria-hidden="true"></i>нэгдмэл брэнд</span></span><span class="en"><span class="fitl">Clear structure<i class="ldot" aria-hidden="true"></i>reliable performance<i class="ldot" aria-hidden="true"></i>a consistent brand</span></span></p>
-        <div class="pills">
-          <span class="pill pill--ink"><i><svg><use href="#i-arrow"/></svg></i><span class="mn">Утас, таблет, компьютерт</span><span class="en">Phone, tablet, desktop</span></span>
-          <span class="pill"><i><svg><use href="#i-arrow"/></svg></i><span class="mn">Монгол · Англи</span><span class="en">Mongolian · English</span></span>
-        </div>
-        <div class="btns">
-          <a class="btn" href="#pricing" data-view="pricing"><span class="mn">Багц үзэх</span><span class="en">See packages</span><span class="arr"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
-          <a class="btn btn--ghost" href="#contact" data-view="contact"><span class="mn">Холбогдох</span><span class="en">Get in touch</span></a>
-        </div>
       </div>
       <div class="hero-fig">
         <span class="bubble"><span class="mn">Сайн уу, би Соотон!</span><span class="en">Hi, I’m Sooton!</span></span>
@@ -1494,8 +1488,10 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     {re:/дэлгүүр|төлбөр|shop|store|payment/i,a:["Онлайн дэлгүүр, төлбөр нь Төгөл багцад багтана.","An online store with payments is the Grove package."]},
     {re:/хэл|англи|language|english/i,a:["Суулгац, Төгөл багцын сайт монгол, англи хоёр хэлтэй.","Sapling and Grove sites come in Mongolian and English."]}
   ];
+  var HELLO=/^\s*(сайн\s*(уу|байна\s*уу|байнуу|бну)|сэн\s*үү|hi|hello|hey)[\s!?.,)]*$/i;
   function offline(v){
     add('me',v);
+    if(HELLO.test(v)){ say(["Сайн уу! 🙂 Юугаар туслах вэ?","Hi! 🙂 How can I help?"]); return; }
     var f=FAQ.filter(function(q){return q.re.test(v);})[0];
     if(f) say(f.a,function(){ say(["Захиалга өгөх бол доороос үйлчилгээгээ сонгоорой.","To order, pick a service below."],orderChips); });
     else say(["Уучлаарай, яг одоо үүнд хариулж чадахгүй нь. Үйлчилгээгээ сонговол баг тантай холбогдож бүх асуултад тань хариулна 🙂","Sorry, I can't answer that right now. Pick a service and the team will get in touch to answer everything 🙂"],orderChips);
