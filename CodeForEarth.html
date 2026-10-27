@@ -1204,8 +1204,9 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
     var target=(anchor&&document.getElementById(anchor))||document.getElementById("view-"+v);
     if(v==="home"&&!anchor) target=document.body;
     var smooth=!instant&&!(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches);
-    if(target===document.body) window.scrollTo({top:0,behavior:smooth?"smooth":"auto"});
-    else target.scrollIntoView({block:"start",behavior:smooth?"smooth":"auto"});
+    // "instant", not "auto": auto would pick up the page-wide smooth scrolling from CSS
+    if(target===document.body) window.scrollTo({top:0,behavior:smooth?"smooth":"instant"});
+    else target.scrollIntoView({block:"start",behavior:smooth?"smooth":"instant"});
   }
   var depth=0;
   function go(v,anchor){
@@ -1214,7 +1215,7 @@ html.phone .to-top,html.phone .swipe-back{zoom:var(--z)}
       depth++;
       history.pushState({d:depth},"",v==="home"&&!anchor?location.pathname:"#"+(anchor||v));
     }catch(e){}
-    show(v,anchor);
+    show(v,anchor,true);
   }
   window.goBack=function(){
     if(depth>0){ history.back(); return; }
